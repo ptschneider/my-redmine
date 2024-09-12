@@ -1,0 +1,19 @@
+# 
+#
+version: '3.1'
+
+services:
+
+  my-redmine:
+    image: docker01mxlinux.acme.local:5000/redmine:5.1.3-alpine
+#    restart: always
+    hostname: my-redmine
+    container_name: my-redmine
+    ports:
+      - 8192:3000
+    environment:
+      REDMINE_DB_MYSQL: my-redmine-db
+      REDMINE_DB_PASSWORD: GoatHead
+      REDMINE_DB_DATABASE: my_redmine_db
+      REDMINE_SECRET_KEY_BASE: 12345678901234567890
+

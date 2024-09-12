@@ -1,0 +1,37 @@
+# mariadb not officially recommended but seems to work fine 
+#
+version: '3.1'
+
+services:
+
+  my-redmine-db:
+#    image: docker01mxlinux.acme.local:5000/mysql:8.0
+    image: docker01mxlinux.acme.local:5000/mariadb:10.4.34
+#    restart: always
+    hostname: my-redmine-db
+    container_name: my-redmine-db
+    environment:
+      MARIADB_ROOT_PASSWORD: GoatHead
+      MYSQL_ROOT_PASSWORD: GoatHead
+      MYSQL_DATABASE: my_redmine_db
+    ports:
+      - 3306:3306
+    volumes:
+      - /work/pschneider/my-redmine/my-redmine/my_redmine_db:/var/lib/mysql
+#
+#      - ./init-setup.sql:/docker-entrypoint-initdb.d/init.sql
+#
+#
+# you can point the db to an existing local directory
+# and/or
+# run an initialization SQL script, e.g. to populate db contents from backup copy
+#
+#    volumes:
+#      - db:/var/lib/mysql
+#      - ./my-init.sql:/docker-entrypoint-initdb.d/init.sql
+#
+#volumes:    
+#  db:
+#    driver: local
+
+
